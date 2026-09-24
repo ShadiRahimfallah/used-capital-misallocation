@@ -29,8 +29,6 @@ used, are openly downloadable from the same page.
 benchmark/            model with new and used capital: solution, calibration,
                       market clearing, invariant distribution, diagnostics
 model_with_no_used/   the single-vintage economy, recalibrated to the same targets
-cf_calib_B/           the tail-pinned comparison  (Appendix C)
-cf_etap/              the tail diagnostic          (Appendix C)
 empirical/            the survey moments: used-capital shares, firm fixed-effect
                       regressions, exit rate, debt-to-output, top-decile employment
                       share, wage Gini, new-to-used ratio, size gradient
@@ -40,6 +38,12 @@ make_readme.py        regenerates README.pdf
 FIGURES.txt           transcript: the numbers behind every plotted curve
 TABLES.txt            transcript: the numbers behind every table
 ```
+
+The two Appendix C comparison economies — the tail-pinned comparison
+(`cf_calib_B/`) and the tail diagnostic (`cf_etap/`) — are not included in this
+package. They are available from the author on request. Without them,
+`tables.m` still produces every other table; only the Appendix C rows for these
+two economies are left blank.
 
 ## Where each table and figure comes from
 
@@ -72,8 +76,27 @@ scratch (`benchmark/verify_benchmark.m`) takes about forty minutes.
 3. MATLAB: `>> tables` prints every table in the paper and writes `TABLES.txt`.
 
 Re-solving the model from scratch, rather than reading the stored `.mat` files, is
-driven from `benchmark/calibrate_newton.m` and the corresponding files in the three
-comparison folders. `README.pdf` documents the model code in detail.
+driven from `benchmark/calibrate_newton.m` and, for the economy without used
+capital, `model_with_no_used/calibrate_cf.m`. `README.pdf` documents the model
+code in detail.
+
+## Code sources and acknowledgements
+
+The solution method follows the computational approaches of
+
+- Midrigan, V. and D. Y. Xu (2014), "Finance and Misallocation: Evidence from
+  Plant-Level Data," *American Economic Review* 104(2), 422–458; and
+- Tan, E., "Entrepreneurial Investment Dynamics and the Wealth Distribution,"
+  *American Economic Journal: Macroeconomics*, forthcoming.
+
+The code in this package was written for this paper, drawing on the methods
+of these papers.
+
+Function approximation uses Miranda and Fackler's CompEcon toolbox
+(Miranda, M. J. and P. L. Fackler, 2002, *Applied Computational Economics and
+Finance*, MIT Press). The toolbox is not redistributed here; download it
+separately and place the `CompEcon` folder next to the model folders
+(see `startup.m`).
 
 ## Licence
 
