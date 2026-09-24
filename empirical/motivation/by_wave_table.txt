@@ -1,0 +1,29 @@
+============================================================================================
+  THE USED-CAPITAL ITEM, BY SURVEY ROUND
+  Survey of Small and Medium Scale Manufacturing Enterprises, Viet Nam
+============================================================================================
+
+  round   item      firms  raw item  in block  any used users only all firms  aggregate    Kn/Ku
+  ------------------------------------------------------------------------------------------
+  2005    q34       2,819     2,819     2,524      46.1       77.3      35.6     29.71*   2.3660
+  2007    q30       2,631     2,420     2,420      35.5       69.2      24.6     19.74*   4.0666
+  2009    q30a      2,659     2,467     2,467      37.2       67.4      25.1      27.05   2.6966
+  2011    q30a      2,512     2,365     2,364      33.1       67.3      22.3      27.55   2.6294
+  2013    q30a      2,542     2,419     2,401      36.7       64.9      23.8      28.02   2.5693
+  2015    q31a      2,648     2,515     2,515      26.6       58.9      15.7      29.64   2.3735
+  Pooled           15,811    15,005    14,691      35.9       68.3      24.5        ---      ---
+
+  firms      = firms interviewed in the round
+  raw item   = firms with a non-missing used-capital item in the raw file
+  in block   = the universe used here: machinery user with a complete
+               new/used/self triple.  2005 loses 295 non-machinery firms
+               that the raw file nonetheless gives a vintage triple.
+  any used   = % of in-block firms with a strictly positive used share
+  users only = mean used share among those firms, %
+  all firms  = mean used share across in-block firms, %
+  aggregate  = sum(w u) / sum(w (n+u)), self-constructed dropped, w the
+               firm's machinery and equipment stock.  Kn/Ku is its
+               complement; 2013 is the KnKu_ratio calibration target.
+  *          = weight at accounting value, not market price (2005, 2007);
+               not comparable in level with 2009-2015.
+============================================================================================

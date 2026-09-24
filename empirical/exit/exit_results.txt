@@ -1,0 +1,33 @@
+==============================================================================
+FIRM EXIT ('DEATH') RATE  --  Vietnam SME survey, 2005-2015
+Method: Berkel, Rand, Tarp & Trifkovic (2020), 'The Vietnam SME Data,
+2005-15', Ch. 2 in Rand & Tarp (eds.), OUP/UNU-WIDER, Table 2.3.
+==============================================================================
+
+--- 1. Firms interviewed per survey round (persistent id `id`) --------
+    2005 :  2819 firms
+    2007 :  2631 firms
+    2009 :  2659 firms
+    2011 :  2512 firms
+    2013 :  2542 firms
+    2015 :  2648 firms
+    (cf. paper 'Full sample': 2,746 / 2,507 / 2,552 / 2,461 / 2,493 / 2,603)
+
+--- 2. Attrition of the 2005 cohort (paper Table 2.3) ----------------
+    panel                     remain  attrited  round-%   cum-%
+    2005                        2819
+    2005-07 panel               2292       527    18.7%   18.7%
+    2005-07-09 panel            1849       443    19.3%   34.4%
+    2005-07-09-11 panel         1438       411    22.2%   49.0%
+    2005-07-09-11-13 panel      1196       242    16.8%   57.6%
+    2005-07-09-11-13-15 panel    1007       189    15.8%   64.3%
+
+--- 3. HEADLINE EXIT MOMENT ------------------------------------------
+    survivors 2005 -> 2015 :  1007 / 2819  = 35.7%   (paper 982/2,746 = 35.8%)
+    ten-year attrition     : 64.3%                    (paper 64%)
+    per-round (2-yr) attr. : 15.8% - 22.2%             (paper 15-21%)
+    ==> ANNUAL DEATH RATE  : 9.78%   ~  0.10          (paper 9-10%)
+
+    Model calibration target:  firm_exit_target = 0.10
+==============================================================================
+DONE.  Full log written to exit_results.txt

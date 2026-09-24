@@ -1,0 +1,65 @@
+==============================================================================
+  PROVENANCE OF THE REAL INTEREST RATE TARGET
+  R_TARGET = 0.031 in benchmark/parameters_benchmark.m
+==============================================================================
+
+  Source: worldbank_raw.json (API unreachable: URLError)
+  Series: FR.INR.DPST = Deposit interest rate (%), NY.GDP.DEFL.KD.ZG = Inflation, GDP deflator (annual %), FR.INR.RINR = Real interest rate, lending (%), FR.INR.LEND = Lending interest rate (%)
+
+  real deposit rate = FR.INR.DPST - NY.GDP.DEFL.KD.ZG
+
+  year       deposit    deflator  REAL deposit  real lending     usable
+  ------------------------------------------------------------------------
+  2005         7.145      18.811       -11.666        -6.553        yes
+  2006         7.630       8.569        -0.939         2.402        yes
+  2007         7.492       9.630        -2.138         1.414        yes
+  2008        12.730      22.673        -9.943        -5.616         NO
+  2009         7.910       6.216         1.694         3.628        yes
+  2010        11.194      42.303       -31.110       -20.497         NO
+  2011        13.993      21.414        -7.420        -3.673         NO
+  2012        10.504       9.078         1.426         4.028        yes
+  2013         7.140       4.039         3.101         6.090        yes
+  2014         5.758       3.698         2.059         4.790        yes
+  2015         4.747      -1.717         6.464         8.988        yes
+  2016         5.035       1.820         3.215         5.049        yes
+
+  'usable' is no where GDP-deflator inflation exceeds 20 percent, at
+  which point the real rate is dominated by the deflator and turns
+  negative; 2011 is the clear case at 21.4 percent inflation.
+
+------------------------------------------------------------------------------
+  THE TARGET
+------------------------------------------------------------------------------
+  2013: 7.140 - 4.039 = 3.101 percent   ->   R_TARGET = 0.031
+
+  Check on the choice of year. The 2012-2016 mean real deposit rate is
+  3.25 percent, against 3.10 in 2013, so the target does not depend on
+  taking a single year. 2013 is used because the used-share gradient, the
+  top-decile employment share and the new-to-used ratio are all 2013 SME
+  survey moments.
+
+------------------------------------------------------------------------------
+  WHY THE DEPOSIT RATE AND NOT THE LENDING RATE
+------------------------------------------------------------------------------
+  real deposit  2013: 3.10 percent    2012-2016 mean 3.25
+  real lending  2013: 6.09 percent    2012-2016 mean 5.79
+  gap           2013: 2.99 points
+
+  Both are correct, and the gap IS Vietnamese financial
+  underdevelopment: the return to capital sits above the US benchmark
+  of roughly 4.5 percent because capital is scarce, while the household
+  savings return sits below it because of repression and a wide
+  intermediation spread.
+
+  The model has ONE interest rate. Savers earn r, borrowers pay r, and
+  the friction is a quantity constraint -- the collateral limit theta --
+  not a price wedge. beta is identified by the household Euler equation,
+  so it is pinned by what savers earn, and the deposit rate is the right
+  counterpart. Do NOT average the two: the average corresponds to
+  nothing in the model. Report robustness over r in [0.03, 0.06]
+  instead, which spans the savings return to the borrowing cost.
+
+  METHOD vs NUMBER. Calibrating beta to match the real interest rate,
+  rather than assigning beta, follows Tan (2025). The number is the
+  Vietnamese series above.
+==============================================================================

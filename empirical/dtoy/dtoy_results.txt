@@ -1,0 +1,31 @@
+==============================================================================
+DEBT-TO-OUTPUT RATIO (DtoY)  --  Vietnam SME survey
+Definition: aggregate sum(debt) / sum(value_added), matching the model's
+gross-debt aggregate estimator (simulate.m / moments_from_invariant.m).
+==============================================================================
+
+--- 1. Variables --------------------------------------------------------
+    debt        : n=30229, exact zeros=46.5% (unlevered firms, kept), negatives=1 (dropped)
+    value_added : n=30230, <=0=160 (dropped)
+
+--- 2. Aggregate DtoY by survey round -----------------------------------
+    round          N      DtoY
+    2005        5608    0.9591
+    2007        5254    0.7691
+    2009        5315    0.5063
+    2011        3628    0.4463
+    2013        4977    0.6014
+    2015        5287    0.6022
+
+--- 3. HEADLINE DtoY MOMENT ---------------------------------------------
+    2013 round           N= 4977  DtoY = 0.6014
+    2015 round           N= 5287  DtoY = 0.6022
+    2013 + 2015 rounds   N=10264  DtoY = 0.6019
+    all rounds pooled    N=30069  DtoY = 0.6139
+
+    ==> DATA DtoY (all rounds)  : 0.6139
+        calibration target      : 0.6000
+        -> the target is the rounded 2013+2015 value; the model value
+           is reported in Table 3, not here.
+==============================================================================
+DONE.  Full log written to dtoy_results.txt

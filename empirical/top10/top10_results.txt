@@ -1,0 +1,70 @@
+==============================================================================
+TOP-10 PERCENT PAID-EMPLOYMENT SHARE  --  Vietnam SME survey, firm data
+==============================================================================
+
+MOMENT
+    The share of paid employment held by the largest 10 percent of firms.
+    Sort firms by paid employment in descending order, take the top 10 percent
+    of firms by count, and report their employment as a share of the total.
+    The marginal firm is split fractionally.  This is the data analogue of the
+    model estimator in ergodic.m:417-428, which sorts the entrepreneur measure
+    by labour demand L and takes the top decile by count.
+
+EMPLOYMENT IS PAID LABOUR
+    The model's L_e comes from the firm's labour first-order condition, so
+    neither the entrepreneur nor unpaid family workers appear in it.  The
+    survey reports the split directly, so no assumption is needed:
+
+        paid employment = total labour force x (1 - share unpaid)
+
+    Unpaid labour is the owner plus family workers.  The 2005 round reports
+    unpaid labour as a headcount rather than a share, so paid employment is
+    formed by subtraction in that round.
+
+ALL OPERATING FIRMS ARE RETAINED
+    Around a fifth of firms report an unpaid share of 1.0: they operate
+    entirely on owner and family labour and hire nobody.  They are retained,
+    with zero paid employment.  They are operating firms, and the model
+    estimator runs over every entrepreneur, each of whom hires L > 0.
+    Excluding them would change the population rather than the measure.
+
+SOURCE
+    The raw round files enterprise_data/enterprise <year>.dta.  The merged
+    vsme_panel.dta carries no paid/unpaid split and cannot produce this
+    moment.  Question numbering shifts between rounds, so the variables are
+    mapped per round in SPEC above.  The SME Employee files are a sampled
+    worker module, not a headcount census, and are reserved for the wage
+    Gini moment.
+
+--- 1. Variable mapping and the unpaid share -----------------------------
+    round  total        unpaid         kind     unp mean  unp max
+    2005   q79a_05      q79c_05        count       1.611    68.00
+    2007   q73at_07     q73bt_07       share       0.361     1.00
+    2009   q73_09       q73a_09        share       0.353     1.00
+    2011   q101a1_11    q101b_11       share       0.376     1.00
+    2013   q101a1_13    q101b_13       share       0.387     1.00
+    2015   q90at_15     q90b_sh_15     share       0.390     1.00
+
+--- 2. Paid-employment concentration by round ----------------------------
+    round         N  median paid  non-employers      top10
+    2005       2819          5.0          17.7%     0.6484
+    2007       2631          5.0          18.1%     0.6387
+    2009       2659          5.0          20.0%     0.6119
+    2011       2512          4.0          20.9%     0.6150
+    2013       2541          4.0          22.1%     0.6321   <== benchmark
+    2015       2648          4.0          24.4%     0.6598
+
+    mean over rounds = 0.6343     range = 0.6119 to 0.6598
+
+--- 3. Headline ----------------------------------------------------------
+    benchmark round 2013        : 0.6321
+    calibration target          : 0.6321
+
+    The target is the benchmark round itself. The model value is
+    reported in Table 3, not here.
+
+    Every round lies above 0.61 and the benchmark round is 0.6321, so the
+    target of 0.6321 is inside the range the data supports and is mildly
+    conservative relative to the benchmark round itself.
+==============================================================================
+DONE.  Full log written to top10_results.txt

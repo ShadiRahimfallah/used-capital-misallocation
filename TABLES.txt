@@ -1,0 +1,235 @@
+==============================================================================
+  FINANCIAL FRICTIONS, USED CAPITAL, AND MISALLOCATION
+  Every table in the paper, printed from stored results
+  generated 30-Aug-2026 21:46:37
+==============================================================================
+
+  This script re-solves nothing. It reads the saved equilibria and
+  prints Tables 1 to 7. It runs in about a minute. The provenance
+  appendix at the end names the file and field behind every number.
+
+
+==============================================================================
+  TABLES 1 AND 2.  Used capital in Vietnamese SMEs (empirical)
+==============================================================================
+
+  Echoed verbatim from empirical/motivation/used_capital_table.txt,
+  written by used_capital_table.py from the SME survey. That microdata
+  is not included in this package, so the committed results file is
+  the audit trail; the full notes are in it.
+
+  TABLE 1.  By firm age
+
+                             Firm-wtd     s.e.               95% CI         N
+  --------------------------------------------------------------------------
+  Young (0-5 years)              31.5     0.83   [  29.9,   33.1]     2,447
+  6-10 years                     26.0     0.61   [  24.8,   27.2]     3,854
+  11+ years                      21.6     0.39   [  20.8,   22.3]     8,610
+
+  Memo, asset-weighted: Young 26.5   6-10 years 26.2   11+ years 24.8
+
+
+  TABLE 2.  By employment size, asset-weighted
+
+                            Asset-wtd     s.e.               95% CI         N
+  --------------------------------------------------------------------------
+  Micro (1-9 workers)            28.1     0.94   [  26.3,   30.0]    10,033
+  Small (10-49 workers)          26.0     1.29   [  23.5,   28.5]     3,918
+  Medium+ (50+ workers)          23.4     3.29   [  17.0,   29.9]     1,028
+
+  Memo, firm-weighted: Micro 22.8   Small 28.0   Medium+ 26.3
+
+
+------------------------------------------------------------------------------
+
+
+==============================================================================
+  TABLE 3.  Calibration: Parameters, Values, and Targets
+==============================================================================
+
+  Parameter                                     Benchmark  Model without   Source or target
+                                                            used capital
+
+  Panel A: Parameters assigned from the literature
+  alpha    Labor share                              0.667          0.667   Buera et al. (2011)
+  delta    Depreciation rate                        0.060          0.060   Buera et al. (2011)
+  eta      Span of control                          0.790          0.790   Buera et al. (2011)
+  sigma    Risk aversion                            1.500          1.500   Buera et al. (2011)
+  rho_y    Ability persistence                      0.950          0.950   Cagetti and De Nardi (2006)
+  phi      CES weight on new capital                0.700          1.000   Assigned; see text
+  gamma    Substitution, new vs used                2.000             --   Edgerton (2011)
+
+  Panel B: Parameters jointly calibrated to data moments
+  theta    Collateral multiplier                    2.143          1.985   Debt-to-output ratio: 0.600
+  eta_p    Productivity-tail parameter              5.949          5.397   Top-decile employment share: 0.632
+  omega    Productivity persistence                 0.860          0.837   Firm exit rate: 0.098
+  sigma_y  Ability innovation dispersion            0.245          0.240   Worker wage Gini: 0.372
+  beta     Discount factor                          0.858          0.854   Real interest rate: 0.031
+  zeta     New-to-used transition rate              0.079          0.000   New-to-used capital ratio: 2.570
+  kappa    Breakage rate of used capital            0.143             --   Used-share gradient: -0.027
+
+  Notes: All targets are computed on the Vietnamese Small and Medium
+  Enterprise Survey (CIEM et al., 2005-2015) and are listed in
+  paper_targets.m. The two economies are calibrated separately. A dash
+  marks a parameter that is undefined in an economy with no second-hand
+  market, not one that is zero.
+
+
+==============================================================================
+  TABLE 4.  Used Capital and Capital Misallocation
+==============================================================================
+
+                                               Benchmark No used capital   Effect of used capital
+
+  TFP loss, M (log points)                          5.72        9.39            39.1% eliminated
+  Mean scale relative to target, K/K*              0.343       0.279            23.0% higher
+  sd(log MRPK)                                     0.450       0.598            24.7% lower
+  Share of firms constrained                       0.908       0.909             0.2% lower
+
+  Notes: The benchmark contains new and used capital, while the other
+  model is without used capital and recalibrated to the common targets.
+  Each economy is compared with its own frictionless twin (theta -> 1e5),
+  so the misallocation loss is a within-economy statistic:
+  M = 100 log(TFP frictionless / TFP constrained).
+
+
+==============================================================================
+  TABLE 5.  Used Capital and Entry by Productive Poor Agents
+==============================================================================
+
+                                               Benchmark No used capital   Effect of used capital
+
+  Poor talented entrepreneurship rate              0.420           0.343                +7.7 p.p.
+  Rich talented entrepreneurship rate              0.827           0.833                -0.6 p.p.
+
+  Poor talented rate, frictionless                 0.714           0.682                       --
+  Rich talented rate, frictionless                 0.801           0.744                       --
+
+  Entry shortfall, S (log points)                   53.2            68.7                  22.6% repaired
+
+  Notes: "Talented" denotes the top productivity decile and "poor"
+  denotes wealth below the benchmark population median. These cutoffs
+  are constructed once in the benchmark and applied in levels to both
+  economies. Each economy is compared with its own frictionless
+  counterpart, so the frictionless rows differ across columns. The
+  entry shortfall S is defined for poor talented agents.
+
+
+==============================================================================
+  TABLE 6.  The result under three designs without used capital
+==============================================================================
+
+  Economy                            eta_p  TFP loss  Misallocation      Entry     K/K*  sd(logMRPK)
+                                           (log pts)        reduced   repaired
+
+  Benchmark (used K)                 5.949      5.72             --         --    0.343        0.450
+  No used capital, tail pinned       5.949      7.11          19.5%      32.0%    0.268        0.530
+  Tail diagnostic                    5.949      7.42          22.9%      27.8%    0.295        0.530
+  No used capital, recalibrated      5.397      9.39          39.1%      22.6%    0.279        0.598
+
+  Notes: The ladder is ordered by how much is allowed to re-adjust.
+  "Tail pinned" holds the ability process at its benchmark value and
+  recalibrates only theta and beta. "Tail diagnostic" begins from the
+  recalibrated economy and returns eta_p to its benchmark value without
+  refitting any moment; its own moments therefore drift, and it is a
+  diagnostic rather than a calibrated column. Misallocation reduced is
+  1 - M_benchmark/M_j; entry repaired is 1 - S_benchmark/S_j.
+
+
+==============================================================================
+  TABLE 7.  Sensitivity to the two assigned CES parameters
+==============================================================================
+
+                                                           phi sweep           gamma sweep
+                                                 phi=0.70   phi=0.75  gamma=1.7  gamma=2.5
+                                              (benchmark)
+
+  Panel A: Gain from removing the collateral constraint
+  TFP (%)                                            5.89       5.91       5.92       5.86
+  TFP loss M (log points)                            5.72       5.74       5.75       5.70
+  Misallocation reduced (%)                          39.1       38.9       38.7       39.3
+  Aggregate output (%)                                 --         --      16.65      16.63
+
+  Panel B: Allocation in the constrained equilibrium
+  Mean scale relative to target, K/K*               0.343      0.350      0.347      0.337
+  Share of firms constrained                        0.908      0.906      0.907      0.908
+  Entrepreneur share                                0.221      0.220      0.221      0.220
+
+  Panel C: Cleared prices
+  Wage W                                            0.540      0.542      0.540      0.540
+  Interest rate r                                   0.031      0.031      0.031      0.031
+  New-capital rental Rn                             0.119      0.124      0.119      0.120
+  Used-capital price pu                             0.645      0.582      0.648      0.640
+
+  Panel D: Targeted moments
+  Debt-to-output ratio                              0.600      0.596      0.600      0.600
+  Top-decile employment share                       0.633      0.634      0.633      0.633
+  Firm exit rate                                    0.097      0.098      0.097      0.097
+  Wage Gini                                         0.372      0.372      0.372      0.372
+  Used-share gradient                              -0.027     -0.025     -0.023     -0.034
+  New-to-used capital ratio                         2.577      2.568      2.570      2.572
+
+  Notes: phi and gamma are assigned rather than calibrated, so each
+  sweep re-clears prices at the new value with every other parameter
+  held at its calibrated level. Panel D shows that the targeted
+  moments barely move, so the headline in Panel A does not rest on
+  either choice.
+
+  Read each sweep against itself. The two blocks were solved in
+  separate runs, so a level difference common to both gamma columns
+  is a run effect and not a gamma effect; the gamma result is the
+  difference BETWEEN 1.7 and 2.5. Across that range the misallocation
+  loss moves by about 0.06 log points, roughly one percent of its
+  level. Full discussion in benchmark/robustness_gamma_results.txt.
+
+
+==============================================================================
+  APPENDIX.  Provenance of every number above
+==============================================================================
+
+  Tables 1 and 2 are echoed from a committed results file. Tables 3 to 7
+  are computed in tables.m from the files below. Nothing is hardcoded.
+
+  source file                                                bytes  last modified
+  ----------------------------------------------------------------------------
+  benchmark/benchmark_result.mat                              3990  2026-08-29 21:04
+  benchmark/nofriction_result.mat                             1316  2026-08-29 21:04
+  benchmark/analysis_used_capital_result.mat              30444251  2026-08-29 21:06
+  model_with_no_used/cf_result.mat                            4091  2026-08-29 21:04
+  model_with_no_used/nofriction_result.mat                    1241  2026-08-29 21:04
+  model_with_no_used/analysis_cf_result.mat               29289061  2026-08-29 21:06
+  cf_calib_B/cf_result.mat                                    4089  2026-08-29 21:04
+  cf_calib_B/nofriction_result.mat                            1239  2026-08-29 21:04
+  cf_calib_B/analysis_cf_result.mat                       30108362  2026-08-29 21:06
+  cf_etap/cf_result.mat                                       4074  2026-08-29 21:04
+  cf_etap/nofriction_result.mat                               1238  2026-08-29 21:04
+  cf_etap/analysis_cf_result.mat                          29668938  2026-08-29 21:06
+  benchmark/robustness_phi_result.mat                         2799  2026-08-29 21:04
+  benchmark/robustness_gamma_result.mat                       2555  2026-08-30 18:55
+
+  Field behind each row
+  ----------------------------------------------------------------------------
+    Table 3 Panel A   parameters_*.m, read as text (never executed)
+    Table 3 Panel B   out.theta, out.eta_p, out.omega, out.sigma_y,
+                      out.beta, out.kappa in *_result.mat;
+                      zeta = (delta + kappa) / (Kn/Ku)
+    Table 3 targets   paper_targets.m
+    Table 4 M         100 log(nofriction_result.frictionless.TFP
+                                / nofriction_result.base.TFP)
+    Table 4 K/K*      nofriction_result.base.kk_mean
+    Table 4 sd MRPK   analysis_*_result.A.econ(1).sd_logMRPK
+    Table 4 constr    nofriction_result.base.constr
+    Table 5 rates     analysis_*_result.A.econ(1).pt_rate, .ptr_rich
+                      frictionless rows use A.econ(2)
+    Table 5 S         100 log(econ(2).pt_rate / econ(1).pt_rate)
+    Table 6           the same fields, one row per economy
+    Table 7 phi       robustness_phi_result.{gains070,gains075,f070,f075}
+    Table 7 gamma     robustness_gamma_result.S(i).{fric,nofr,gain_L,gain_Y}
+
+  To re-derive the stored equilibria rather than read them, run
+  benchmark/verify_benchmark.m. It ignores every cache and re-solves
+  the benchmark from the parameters in parameters_benchmark.m, which
+  takes about forty minutes on the production grid.
+==============================================================================
+  Written to TABLES.txt
+==============================================================================

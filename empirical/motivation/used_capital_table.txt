@@ -1,0 +1,64 @@
+==============================================================================
+  USED CAPITAL IN VIETNAMESE SMEs
+  Manufacturing SMEs, Viet Nam, pooled waves 2005-2015
+==============================================================================
+
+  Used capital as a share of the firm's equipment stock, percent.
+  All firms answering the question, zeros included.
+
+
+  TABLE 1.  By firm age
+
+                             Firm-wtd     s.e.               95% CI         N
+  --------------------------------------------------------------------------
+  Young (0-5 years)              31.5     0.83   [  29.9,   33.1]     2,447
+  6-10 years                     26.0     0.61   [  24.8,   27.2]     3,854
+  11+ years                      21.6     0.39   [  20.8,   22.3]     8,610
+
+  Memo, asset-weighted: Young 26.5   6-10 years 26.2   11+ years 24.8
+
+
+  TABLE 2.  By employment size, asset-weighted
+
+                            Asset-wtd     s.e.               95% CI         N
+  --------------------------------------------------------------------------
+  Micro (1-9 workers)            28.1     0.94   [  26.3,   30.0]    10,033
+  Small (10-49 workers)          26.0     1.29   [  23.5,   28.5]     3,918
+  Medium+ (50+ workers)          23.4     3.29   [  17.0,   29.9]     1,028
+
+  Memo, firm-weighted: Micro 22.8   Small 28.0   Medium+ 26.3
+
+
+------------------------------------------------------------------------------
+  Notes
+------------------------------------------------------------------------------
+  Sample: Survey of Small and Medium Scale MANUFACTURING Enterprises in
+  Viet Nam (CIEM, ILSSA, UCPH and UNU-WIDER), waves 2005 to 2015, pooled.
+  The used share is the respondent's own percentage, censored to the
+  unit interval. Table 1 is Figure 1 in numbers.
+
+  Firm age is the survey year minus the establishment year, with the
+  establishment year pinned at the firm's modal report across waves;
+  the self-reported year moves between waves for about a third of
+  firms. Age 10 belongs to the 6-10 group, so the top group is 11+.
+
+  Table 1 leads with the firm-weighted mean because the age gradient
+  is a statement about firms. Table 2 leads with the asset-weighted
+  mean because the model's new-to-used capital ratio is a ratio of
+  aggregate capital stocks, not an average across firms: two thirds of
+  these firms are micro but hold about a fifth of the capital. Each
+  table gives the other weighting as a memo.
+
+  Asset-weighted standard errors use the linearised variance of a
+  weighted mean. The asset distribution is concentrated -- the top
+  percentile of firms holds 29 percent of assets and the top decile 67
+  -- so a weighted mean rests on far fewer effective observations than
+  N suggests. That is why the medium+ interval is wide enough to
+  contain the micro point estimate: the asset-weighted size ordering
+  runs in the direction the model predicts, but no pairwise difference
+  between size classes is significant. Report the ordering, not an
+  estimated gradient.
+
+  Firm-weighted standard errors are unweighted and are not clustered by
+  firm; the within-firm regressions reported separately cluster.
+==============================================================================

@@ -1,0 +1,99 @@
+==============================================================================
+  FINANCIAL FRICTIONS, USED CAPITAL, AND MISALLOCATION
+  Figures 1 and 2, drawn from stored results
+  generated 30-Aug-2026 20:15:14
+==============================================================================
+
+  source files
+  ----------------------------------------------------------------------------
+  benchmark/analysis_used_capital_result.mat            30444251 B  2026-08-29 21:06
+  model_with_no_used/analysis_cf_result.mat             29289061 B  2026-08-29 21:06
+
+
+  FIGURE 1, LEFT PANEL -- shadow cost mu by wealth decile
+  source: A.econ(1).tabMU10, a 10-by-3 table in the benchmark file
+
+    decile         low z       mid z      high z
+    1             0.1639      0.2871      0.7269
+    2             0.0874      0.1550      0.3662
+    3             0.0562      0.1120      0.2917
+    4             0.0330      0.0843      0.2450
+    5             0.0163      0.0622      0.1917
+    6             0.0039      0.0383      0.1488
+    7             0.0000      0.0162      0.1298
+    8             0.0000      0.0023      0.1098
+    9             0.0000      0.0000      0.0877
+    10            0.0000      0.0000      0.0609
+
+
+  FIGURE 1, RIGHT PANEL -- used-capital value share against mu
+  source: A.econ(1).mu, .ushare and .me; firms binned by mu into 20
+  equal-measure bins, averaged within bin using the invariant measure
+
+    bin                  mean mu     share (%)
+    unconstrained         0.0000         14.68
+    1                     0.0119         15.84
+    2                     0.0286         17.36
+    3                     0.0409         18.36
+    4                     0.0520         19.20
+    5                     0.0615         19.87
+    6                     0.0700         20.44
+    7                     0.0778         20.94
+    8                     0.0856         21.41
+    9                     0.0938         21.88
+    10                    0.1028         22.37
+    11                    0.1129         22.90
+    12                    0.1245         23.47
+    13                    0.1382         24.09
+    14                    0.1559         24.83
+    15                    0.1778         25.66
+    16                    0.2058         26.60
+    17                    0.2437         27.69
+    18                    0.2990         29.00
+    19                    0.3985         30.75
+    20 (off axis)         0.9339         34.16
+
+    unconstrained share       14.68 %
+    at the axis cut           30.75 %   (mu = 0.4808)
+    rise plotted             +16.07 pp
+    mass beyond the cut        5.00 % of constrained firms
+
+  [saved] figure1.pdf and figure1.png
+  [saved] figure_usedcapital_tilt.pdf and .png  (right panel, standalone)
+
+
+  FIGURE 2 -- MRPK relative to each economy's own frictionless level
+  source: A.econ(1).MRPK, .a, .z, .me in both files;
+  the efficient level is the measure-weighted mean of A.econ(2).MRPK
+
+    efficient MRPK, benchmark              0.1727
+    efficient MRPK, no used capital        0.1565
+
+    percentile           benchmark   no used capital
+    4.4                      3.479             4.544
+    9.2                      2.903             3.661
+    14.0                     2.594             3.251
+    18.8                     2.396             3.010
+    23.6                     2.236             2.817
+    28.4                     2.099             2.633
+    33.2                     1.987             2.490
+    38.0                     1.871             2.337
+    42.8                     1.773             2.221
+    47.6                     1.670             2.096
+    52.4                     1.584             1.970
+    57.2                     1.494             1.862
+    62.0                     1.401             1.735
+    66.8                     1.314             1.612
+    71.6                     1.225             1.484
+    76.4                     1.137             1.350
+    81.2                     1.047             1.214
+    86.0                     0.953             1.057
+    90.8                     0.867             0.893
+    95.6                     0.782             0.712
+
+  [saved] figure2.pdf and figure2.png
+==============================================================================
+  Transcript written to FIGURES.txt
+  Every plotted point is listed above and can be checked against the
+  picture by eye. Nothing in this file is a hardcoded coordinate.
+==============================================================================

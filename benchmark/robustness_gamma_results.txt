@@ -1,0 +1,78 @@
+==============================================================================
+  SENSITIVITY TO GAMMA, THE ELASTICITY OF SUBSTITUTION BETWEEN NEW AND USED
+  CAPITAL
+==============================================================================
+
+  The paper sets gamma = 2.0. Edgerton (2011) estimates the elasticity
+  between 1.9 and 2.4 for construction machinery; this sweep spans a wider
+  range, 1.7 to 2.5. The calibration is held fixed at the benchmark point
+  and only prices are re-cleared, so the exercise asks whether the results
+  turn on gamma, not whether the model can be re-fitted around it.
+
+                                 gamma=1.7   gamma=2.0   gamma=2.5
+  ----------------------------------------------------------------
+  wage W                             0.540       0.540       0.540
+  interest rate r                    0.031       0.031       0.031
+  new-capital rent Rnew              0.119       0.119       0.120
+  used price pu                      0.648       0.645       0.640
+  used share (%)                     20.12          --       19.92
+  share constrained                  0.907       0.908       0.908
+  mean scale K/K*                    0.347       0.343       0.337
+  output gain (%)                    16.65       16.88       16.63
+  misallocation L (log pt)            5.75        5.72        5.70
+
+  Relative to gamma = 2.0:
+    gamma = 1.7 : L +0.032 log points, output gain -0.230 points
+    gamma = 2.5 : L -0.024 log points, output gain -0.244 points
+    total spread in L across the range: 0.057 log points (1.0% of 5.72)
+
+------------------------------------------------------------------------------
+  FINDING
+------------------------------------------------------------------------------
+  The results do not turn on gamma. Across 1.7 to 2.5 the misallocation loss
+  moves by 0.057 log points, about 1 percent of its level, and the output
+  gain by 0.014 points.
+
+  DIRECTION. L FALLS as gamma rises (5.698 at 2.5 against 5.754 at 1.7).
+  A claim that a more substitutable pair raises the reported effect, and
+  that gamma = 2.0 is therefore the conservative end of the range, is not
+  supported: the sign runs the other way. Given the size of the movement
+  the honest statement is insensitivity, not a reversal.
+
+  READ THE TWO SWEPT VALUES AGAINST EACH OTHER, NOT AGAINST THE STORED
+  BENCHMARK LEVEL. Both gammas give an output gain about 0.24 points below
+  the stored gamma = 2.0 figure, and by almost the same amount. A shift
+  common to both cannot be a gamma effect; it is a level difference against
+  an economy solved in a separate run. The gamma effect is the difference
+  BETWEEN 1.7 and 2.5: 0.014 points on the output gain and 0.057 log points
+  on L. The L comparison straddles the benchmark (+0.032 and -0.024), so it
+  carries no such offset.
+
+------------------------------------------------------------------------------
+  HOW THE ECONOMIES WERE CLEARED
+------------------------------------------------------------------------------
+  The friction economies clear to 0.2 percent on the goods and labour
+  markets and 0.5 percent on the new-to-used ratio, against defaults of 0.5
+  and 2 percent. The tighter setting is necessary rather than cosmetic: at
+  the default, gamma = 1.7 seeded at the benchmark prices left residuals of
+  -0.4 and -1.0 percent, both inside tolerance, so the clearer returned the
+  seed unchanged and the economy was never re-cleared. The 2 percent floor
+  on the ratio was hardcoded and unreachable from any setting; it is now
+  overridable, with the default unchanged.
+
+  The benchmark's own realized gaps are -0.1, +0.1 and +0.3 percent, so it
+  already meets the tighter standard and was not re-cleared.
+
+  The frictionless twins clear to 0.5 percent, which is the tolerance
+  nofriction.m used for the benchmark's own twin, so the comparison is
+  consistent across all three economies.
+
+  gamma is hardcoded inside evaluate_economy and reachable only through
+  cf_gamma_override. If that override stopped biting, every gamma would
+  solve the same economy and the sweep would report, wrongly, that gamma
+  does not matter. The two economies here differ (Y by 1.51e-03), so the
+  override is live and the sweep is meaningful.
+
+  Produced by robustness_gamma.m; numbers read from
+  robustness_gamma_result.mat.
+==============================================================================

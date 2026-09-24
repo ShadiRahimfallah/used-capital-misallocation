@@ -1,0 +1,40 @@
+==============================================================================
+NEW-to-USED CAPITAL RATIO (Kn/Ku)  --  Vietnam SME survey
+Target for: zeta = (delta+kappa)/KnKu_ratio, an AGGREGATE technology.
+Estimator must therefore be aggregate Kn / aggregate Ku, i.e. firm shares
+weighted by each firm's equipment stock -- NOT the mean of firm shares.
+==============================================================================
+
+--- 1. Aggregate Kn/Ku by survey round -------------------------------------
+  round       N  mean_new  mean_used  AGGREGATE  agg used sh
+   2005   (variables not found)
+   2007   (variables not found)
+   2009    2465      0.72       0.25     2.6966       0.2705
+   2011    2365     73.62      22.28     2.6295       0.2755
+   2013    2417     73.39      23.71     2.5699       0.2801  <== benchmark
+   2015   (variables not found)
+
+--- 2. Benchmark year 2013: robustness to the weighting variable -------------
+      weight       N     Kn/Ku   used share   description
+     EAq1t12    2417    2.5699       0.2801   Machinery/Equipment, market price   <== PREFERRED
+     EAq1t11    2407    2.7226       0.2686   Machinery/Equipment, one year earlier
+    q73ac_13    2408    2.4996       0.2857   Equipment/machinery value (self-reported, mVND)
+     EAq1q12    2417    2.5691       0.2802   TOTAL physical assets (cruder proxy)
+
+--- 3. HEADLINE Kn/Ku MOMENT -----------------------------------------------
+    benchmark round 2013, weighted by EAq1t12
+      AGGREGATE Kn/Ku                    : 2.5699   <== CALIBRATION TARGET
+      aggregate used share of equipment  : 0.2801
+
+      implied zeta = (delta+kappa)/KnKu = (0.06+0.1434)/2.5699 = 0.0791
+
+    ==> KnKu_ratio = 2.5699
+==============================================================================
+Method note for the paper:
+  Firm-level equipment shares (q30aa/q30ab, self-constructed excluded) are
+  aggregated using each firm's machinery and equipment stock at market
+  prices, so the statistic is the economy-wide new-to-used capital ratio
+  rather than the mean across firms. The distinction matters because larger
+  firms hold most of the equipment and are more likely to buy used, so the
+  unweighted mean of firm shares overstates Kn/Ku.
+==============================================================================

@@ -1,0 +1,403 @@
+==============================================================================
+FIRM FIXED-EFFECTS REGRESSION - used capital, Vietnam SME panel 2005-2015
+==============================================================================
+
+--- 1. BUILD PANEL ---------------------------------------------------
+  pooled firm-wave observations: 15811   unique firm ids: 5131
+  firms by number of waves observed:
+     1 wave(s):  1402 firms  (  1402 obs)
+     2 wave(s):  1031 firms  (  2062 obs)
+     3 wave(s):   807 firms  (  2421 obs)
+     4 wave(s):   536 firms  (  2144 obs)
+     5 wave(s):   348 firms  (  1740 obs)
+     6 wave(s):  1007 firms  (  6042 obs)
+
+--- 2. PANEL-ID VALIDATION -------------------------------------------
+  firms whose reported birth year is constant across all their waves: 2586 of 5125 (50.5%)
+  among multi-wave firms only:                                        1189 of 3728 (31.9%) constant
+  disagreement in years (max-min) among the inconsistent firms: median 6, p75 12, p90 22, max 75
+  -> birth year pinned at the firm's modal report; Age and Young rebuilt from it.
+     Self-reported version retained as age_raw/young_raw (robustness column).
+  firms whose province is constant across all their waves:            5116 of 5131 (99.7%)
+  firms whose sector   is constant across all their waves:            3970 of 5122 (77.5%)
+  -> province/sector are (nearly) firm-invariant, hence absorbed by alpha_i.
+
+--- 3. IDENTIFYING VARIATION FOR THE WITHIN ESTIMATOR ----------------
+  estimation sample (non-missing, firm seen >=2 waves): 13403 obs, 3549 firms
+  firms for which Young (age<=5) changes       :  1021 of  3549 ( 28.8%)  <- these firms carry the coefficient
+  firms for which ZeroDebt changes             :  2143 of  3549 ( 60.4%)  <- these firms carry the coefficient
+  firms for which ZeroDebt x Young changes     :   563 of  3549 ( 15.9%)  <- these firms carry the coefficient
+  firms for which size class 'small' changes   :   933 of  3549 ( 26.3%)  <- these firms carry the coefficient
+  within-firm sd of the used share: mean 21.2 pp, median 14.1 pp; 1426 firms (40.2%) never change it
+  transitions of Young among its switchers: 1021 firm-pairs go 1->0 (cross age 5), 0 go 0->1 (should be ~0)
+
+--- 4. ESTIMATES ------------------------------------------------------
+
+  Dependent variable: share of equipment used/second-hand at purchase, in PERCENTAGE POINTS (0-100)
+                              (1) pooled          (2) FE    (3) FE, lean(4) FE, age bins(5) FE, >=3 waves (6) FE + import (7) FE, raw age
+  ---------------------------------------------------------------------------------------------------------------------------------------
+  ZeroDebt                        -0.442          -1.046          -1.026          -0.497          -0.925          -0.818          -1.123
+                                 (0.688)         (0.872)         (0.871)         (0.835)         (0.891)         (1.473)         (0.862)
+  Young (age<=5)                   0.993           0.755           0.807               -           0.868          5.121*           1.158
+                                 (1.184)         (1.658)         (1.659)                         (1.707)         (2.998)         (1.561)
+  ZeroDebt x Young                2.860*               -               -               -               -               -               -
+                                 (1.711)                                                                                                
+                                       -          3.885*          3.958*               -         4.801**           0.270         5.345**
+                                                 (2.340)         (2.339)                         (2.439)         (3.904)         (2.378)
+  Age 0-2                              -               -               -           3.583               -               -               -
+                                                                                 (3.150)                                                
+  Age 3-5                              -               -               -           3.065               -               -               -
+                                                                                 (2.073)                                                
+  Age 6-10                             -               -               -           0.883               -               -               -
+                                                                                 (1.346)                                                
+  ln(Assets)                      -0.350          -0.679               -          -0.691          -0.584          -0.723         -0.778*
+                                 (0.273)         (0.453)                         (0.453)         (0.465)         (0.776)         (0.451)
+  Firm age                       0.087**               -               -               -               -               -               -
+                                 (0.043)                                                                                                
+  Import                               -               -               -               -               -           1.440               -
+                                                                                                                 (4.062)                
+  Small (10-49)                 -2.210**           0.636               -           0.598           1.197           3.072           1.278
+                                 (0.933)         (1.503)                         (1.503)         (1.528)         (2.501)         (1.493)
+  Medium+ (50+)                -4.876***           1.395               -           1.341           1.472           2.111           1.804
+                                 (1.576)         (2.979)                         (2.979)         (3.107)         (4.954)         (3.001)
+  N                               14,841          13,403          13,403          13,403          11,367           6,107          13,460
+  firms                            5,022           3,549           3,549           3,549           2,531           2,294           3,545
+  R2 / within-R2                   0.157           0.036           0.036           0.036           0.034           0.005           0.038
+  firm FE                             NO             YES             YES             YES             YES             YES             YES
+  year FE                            YES             YES             YES             YES             YES             YES             YES
+
+  [(1) pooled] BETWEEN-firm: sector+year+province FE, NO firm FE (the paper's eq. 1)
+  [(2) firm FE] WITHIN-firm: firm FE + year FE; Age drops (= t - birthyear, collinear); sector/province absorbed; SE clustered by firm and d.o.f.-corrected for the 3549 absorbed firm effects (SEs are 17% larger than the uncorrected ones)
+  [(3) firm FE, lean] WITHIN-firm, lean: firm FE + year FE only; drops ln(Assets) and size, which are themselves outcomes of firm growth (bad controls); SE clustered by firm and d.o.f.-corrected for the 3549 absorbed firm effects (SEs are 17% larger than the uncorrected ones)
+  [(4) firm FE, age bins] WITHIN-firm age profile, omitted bin = 10+ years; identified only off the NONLINEARITY in age, since linear age is absorbed by firm+year FE; SE clustered by firm and d.o.f.-corrected for the 3549 absorbed firm effects (SEs are 17% larger than the uncorrected ones)
+  [(5) firm FE, >=3 waves] WITHIN-firm, firms observed in >=3 waves only; SE clustered by firm and d.o.f.-corrected for the 2531 absorbed firm effects (SEs are 13% larger than the uncorrected ones)
+  [(6) firm FE + import] WITHIN-firm, waves 2009/2011/2013 where imports are recorded; SE clustered by firm and d.o.f.-corrected for the 2294 absorbed firm effects (SEs are 27% larger than the uncorrected ones)
+  [(7) firm FE, raw age] WITHIN-firm using the RAW self-reported establishment year (birth year NOT pinned, so 315 firm-pairs cross the age-5 line backwards). Reported for transparency: it is LARGER than col (2), not attenuated, so pinning the birth year is a conservative choice, not a result-manufacturing one; SE clustered by firm and d.o.f.-corrected for the 3545 absorbed firm effects (SEs are 17% larger than the uncorrected ones)
+
+--- 5. HOW TO READ THIS ------------------------------------------------
+  Column (1) is BETWEEN firms.  It compares different firms in the same
+  sector, year and province, so it licenses only:
+      "Older firms report lower used-capital shares than younger firms."
+
+  Column (2) is WITHIN firms.  The same firm is followed across waves and
+  alpha_i absorbs everything permanent about it (founder, location, sector,
+  technology, its habitual way of answering the question).  A within-firm
+  sentence -- "firms reduce their used-capital share as they age" -- has to be
+  earned HERE, and only for the margins that actually come out significant.
+
+  All coefficients below are in PERCENTAGE POINTS of the used-machinery share.
+
+  Young, within firm:           +0.76 pp (se 1.66, p = 0.649)
+  Young, between firms:         +0.99 pp
+  ZeroDebt x Young, within:     +3.88 pp (se 2.34, p = 0.097)
+  ZeroDebt x Young, between:    +2.86 pp
+  ZeroDebt main effect, within: -1.05 pp (se 0.87, p = 0.230)
+  Young + ZeroDebt x Young:     +4.64 pp (se 2.10, p = 0.027)
+
+  VERDICT, one margin at a time:
+   * Unconditional age.  Within firm, Young alone is INSIGNIFICANT (p = 0.649) and the
+     three-bin age profile is jointly INSIGNIFICANT.  The unconditional sentence
+     "firms reduce their used-capital share as they age" is therefore
+     NOT supported by the within-firm evidence and should NOT be written.
+   * Age interacted with financing.  For DEBT-FREE firms the within-firm young
+     premium is 4.6 pp (p = 0.027), and 5.7 pp (p = 0.009) among firms seen in
+     at least three waves.  THIS is the sentence the panel supports:
+     "within the same firm, the used-capital share is higher in the years when
+      the firm is both young and carrying no debt, and falls as it ages out of
+      that state."
+   * So the referee's correction stands, and it lands on the AGE claim, not on
+     the financing claim -- which is the claim the model actually needs.
+
+--- 6. TESTS THE PAPER SHOULD REPORT ---------------------------------
+  (2) firm FE            Young + ZeroDebt x Young  (the total within-firm effect of being young FOR A DEBT-FREE FIRM):
+                           +4.64 pp   se 2.10   p = 0.027
+  (5) firm FE, >=3 waves Young + ZeroDebt x Young  (the total within-firm effect of being young FOR A DEBT-FREE FIRM):
+                           +5.67 pp   se 2.18   p = 0.009
+
+  (4) joint Wald test that the whole within-firm age profile is flat
+      H0: Age0-2 = Age3-5 = Age6-10 = 0
+      F(3, 3548) = 0.89, p = 0.447 -> CANNOT reject: NO within-firm age profile once alpha_i is absorbed
+      point estimates, relative to age 10+: 3.58 / 3.06 / 0.88 / 0.00 pp (monotone: yes)
+
+  (2) joint Wald test that the young margin is absent altogether
+      H0: Young = ZeroDebt x Young = 0
+      F(2, 3548) = 2.45, p = 0.086 -> REJECT: something happens at the young margin within firm
+
+  Caveats to state in the paper, in this order:
+   1. Identification is off the firms listed in section 3 above -- those that
+      cross age five between waves and those whose debt status changes.  Firms
+      with no such change contribute nothing to b2 and b3.
+   2. Age itself cannot appear: Age_it = t - BirthYear_i is an exact linear
+      combination of the firm and year effects.  Column (4) recovers a
+      nonlinear age profile, but only relative to the linear trend the fixed
+      effects already absorb -- do not read its bins as raw age differences.
+   3. ln(Assets) and the size dummies are themselves outcomes of firm growth.
+      Column (3) drops them; report it so the reader can see the difference.
+   4. The 2015 accounts report total, not physical, assets; the year effects
+      absorb the level break but not any change in its dispersion.
+   5. Standard errors here are d.o.f.-corrected for the absorbed firm effects
+      (the areg/reghdfe convention).  Without that correction they are about
+      14% smaller and the within estimates look more precise than they are.
+
+  SUPERSEDES the firm-FE column of motivation_analysis.py.  That column reported
+  Young = +3.3 pp*** within firm, but it (a) omitted the ZeroDebt x Young
+  interaction, so the debt-free young premium loaded onto Young alone, (b) used
+  the raw self-reported establishment year, and (c) did not correct the d.o.f.
+  for the absorbed firm effects.  With all three fixed, Young alone is +0.8 pp
+  (n.s.) and the effect sits on the interaction instead.  Do not quote the
+  +3.3 pp figure.
+
+==============================================================================
+  7. AGE BETWEEN FIRMS, SIZE WITHIN FIRMS
+==============================================================================
+
+  PANEL A -- AGE, BETWEEN FIRMS (the only age evidence six waves can support)
+
+  raw means (all firms, zeros included):
+    age 0-2     32.2%   N = 577
+    age 3-5     31.3%   N = 1,870
+    age 6-10    26.0%   N = 3,854
+    age 10+     21.6%   N = 8,610
+
+  conditional on size, assets, sector, year and province (omitted bin: older than 10):
+    age 0-2    -0.87 pp  (se 1.80, p = 0.630)
+    age 3-5    +1.25 pp  (se 1.08, p = 0.244)
+    age 6-10   -1.07 pp  (se 0.79, p = 0.174)
+
+  PANEL B -- SIZE, WITHIN FIRMS
+  The calibration moment beta_size is the slope of the used share on LOG ASSETS
+  among firms with a POSITIVE used share (betasize_regression.py, 2013).  Below
+  is that same gradient with firm fixed effects, i.e. asked of the same firm as
+  its assets grow.
+
+  (a) AS CALIBRATED  2013 cross-section, used>0, no controls, no FE
+      lnA -2.766 pp per log point (se 0.616, p = 0.000)***   N = 886
+      [the calibration target is -2.69 pp; reproduced here as -2.77]
+
+  (b) BETWEEN FIRMS   all waves, used>0, year FE
+      lnA -2.783 pp per log point (se 0.289, p = 0.000)***   N = 5,352, firms 2,838
+
+  (c) WITHIN FIRMS    used>0, firm FE + year FE
+      lnA -0.798 pp per log point (se 0.729, p = 0.274)   N = 3,812, firms 1,298
+
+  (d) WITHIN FIRMS    all firms incl. zeros, firm FE + year FE
+      lnA -0.795 pp per log point (se 0.447, p = 0.076)*   N = 13,516, firms 3,553
+
+  (e) WITHIN FIRMS    used>0, log EMPLOYMENT instead of assets
+      lnE -0.147 pp per log point (se 1.607, p = 0.927)   N = 3,798, firms 1,294
+
+  VERDICT ON THE SIZE GRADIENT
+    between firms: -2.783 pp per log point of assets (p = 0.000)
+    within  firms: -0.798 pp per log point of assets (p = 0.274)
+    -> the gradient does NOT survive within firm.
+       beta_size is a CROSS-SECTIONAL fact. Small firms use more used equipment than big firms, but a given firm growing bigger does not measurably shed it over ten years. State the moment as a cross-sectional target, which is how the model uses it.
+
+  Caveat on (c): conditioning on used>0 selects on a function of the
+  dependent variable, and firms move in and out of that sample between waves.
+  Column (d) keeps the zeros and is the cleaner within-firm object; the
+  calibration moment conditions on used>0 only because the model has no
+  extensive margin.
+
+==============================================================================
+  8. HEADLINE: THE COLLATERAL CHANNEL, WITHIN FIRM
+==============================================================================
+
+  UsedShare_it = alpha_i + lambda_t + b1 ZeroDebt_it + b2 lnA_it
+                 + b3 (ZeroDebt x lnA)_it + Gamma' Size_it + eps_it
+
+    ZeroDebt (at mean assets)   -0.482 pp  (se 0.836, p = 0.564)
+    ln(Assets), centred         -0.260 pp  (se 0.493, p = 0.597)
+    ZeroDebt x ln(Assets)       -1.067 pp  (se 0.462, p = 0.021)**
+    Small (10-49)               +1.037 pp  (se 1.487, p = 0.486)
+    Medium+ (50+)               +1.153 pp  (se 2.994, p = 0.700)
+                               13,492 obs, 3,551 firms, within-R2 0.036
+
+  Implied ZeroDebt premium at points of the asset distribution
+  (b1 + b3 * (lnA - mean lnA); the collateral channel in one line):
+    p10  (lnA = 11.13)   +2.24 pp  (se 1.37, p = 0.102)
+    p25  (lnA = 12.41)   +0.88 pp  (se 0.97, p = 0.364)
+    p50  (lnA = 13.79)   -0.59 pp  (se 0.84, p = 0.481)
+    p75  (lnA = 14.99)   -1.87 pp  (se 1.08, p = 0.083)*
+    p90  (lnA = 15.97)   -2.92 pp  (se 1.41, p = 0.039)**
+
+  between-firm counterpart of the interaction: -1.216 pp (se 0.356, p = 0.001)***
+==============================================================================
+  THE TWO MODELS THE PAPER KEEPS  (both WITHIN firm)
+==============================================================================
+
+  Dependent variable: used-capital share, percentage points.
+  These are TWO SEPARATE regressions, not one.  A dash means the variable is not
+  in that regression at all:
+    (1) interacts Zero debt with log assets  -- the collateral margin
+    (2) interacts Zero debt with young       -- the age margin
+  Both include firm effects, year effects and the size dummies; sector and
+  province are absorbed by the firm effect.  Standard errors in parentheses,
+  clustered by firm and d.o.f.-corrected for the absorbed firm effects.
+
+                                     (1) Asset    (2) Young-firm
+                                   interaction       interaction
+  --------------------------------------------------------------
+  Zero debt x log assets              -1.067**               ---
+                                       (0.462)                  
+  Zero debt x young                        ---            3.885*
+                                                         (2.340)
+  Zero debt                             -0.482            -1.046
+                                       (0.836)           (0.872)
+  Log assets                            -0.260            -0.679
+                                       (0.493)           (0.453)
+  Young (age<=5)                           ---             0.755
+                                                         (1.658)
+  Small (10-49)                          1.037             0.636
+                                       (1.487)           (1.503)
+  Medium+ (50+)                          1.153             1.395
+                                       (2.994)           (2.979)
+  --------------------------------------------------------------
+  Observations                          13,492            13,403
+  Firms                                  3,551             3,549
+  within R2                              0.036             0.036
+  Firm fixed effects                       Yes               Yes
+  Year fixed effects                       Yes               Yes
+  Sector, province                    Absorbed          Absorbed
+
+  beta_2 + beta_3, the total within-firm gradient for a no-debt firm
+  (computed for reference; NOT reported as a row of the table):
+    (1) Asset         -1.328 pp  (se 0.516, p = 0.010)**
+    (2) Young-firm    +4.640 pp  (se 2.097, p = 0.027)**
+
+  READING
+    The interaction is -1.067 pp per log point (p = 0.021)**.  Within the same
+    firm, being cut off from credit raises the used-capital share most when the
+    firm has little to pledge, and that premium shrinks as it accumulates assets.
+    This is the collateral constraint of the model, measured directly, and it
+    does not rely on firm age -- which is what six waves over ten years cannot
+    identify anyway.
+
+==============================================================================
+  9. FILES WRITTEN BY THIS RUN
+==============================================================================
+
+  main_table.tex
+  (Table 1 of the paper (tab:emp_panel) -- within-firm estimates)
+  --------------------------------------------------------------------------
+  | \begin{table}[H]
+  | \centering
+  | \small
+  | \setlength{\tabcolsep}{8pt}
+  | \caption{Financing Frictions and Used Capital}
+  | \label{tab:emp_panel}
+  | \begin{tabular}{lcc}
+  | \toprule
+  | \multicolumn{3}{l}{\emph{Dependent variable:} used-capital share (percentage points)} \\
+  | \addlinespace[2pt]
+  |  & (1) Asset & (2) Young-firm \\
+  |  & interaction & interaction \\
+  | \midrule
+  | Zero debt $\times$ log assets & $-1.067^{**}$ & --- \\
+  |  & $(0.462)$ &  \\
+  | Zero debt $\times$ young & --- & $3.885^{*}$ \\
+  |  &  & $(2.340)$ \\
+  | Zero debt & $-0.482$ & $-1.046$ \\
+  |  & $(0.836)$ & $(0.872)$ \\
+  | Log assets & $-0.260$ & $-0.679$ \\
+  |  & $(0.493)$ & $(0.453)$ \\
+  | Young (age $\le 5$) & --- & $0.755$ \\
+  |  &  & $(1.658)$ \\
+  | Small (10--49) & $1.037$ & $0.636$ \\
+  |  & $(1.487)$ & $(1.503)$ \\
+  | Medium+ (50+) & $1.153$ & $1.395$ \\
+  |  & $(2.994)$ & $(2.979)$ \\
+  | \midrule
+  | Observations & $13{,}492$ & $13{,}403$ \\
+  | Firms & $3{,}551$ & $3{,}549$ \\
+  | $R^{2}$ (within) & $0.036$ & $0.036$ \\
+  | Firm effects & Yes & Yes \\
+  | Year effects & Yes & Yes \\
+  | Sector, province & Absorbed & Absorbed \\
+  | \bottomrule
+  | \end{tabular}
+  | \end{table}
+
+  firm_fe_table.tex
+  (between/within comparison, all seven specifications)
+  --------------------------------------------------------------------------
+  | \begin{table}[H]
+  | \centering
+  | \caption{Used Capital, Financing and Firm Age: Between- and Within-Firm Estimates}
+  | \label{tab:emp_firmfe}
+  | \begin{tabular}{lcccc}
+  | \toprule
+  |  & (1) Pooled & (2) Firm FE & (3) Firm FE, lean & (4) Firm FE, age bins \\
+  | \midrule
+  | Zero debt & $-0.442$ & $-1.046$ & $-1.026$ & $-0.497$ \\
+  |  & $(0.688)$ & $(0.872)$ & $(0.871)$ & $(0.835)$ \\
+  | Young (age $\le 5$) & $0.993$ & $0.755$ & $0.807$ & --- \\
+  |  & $(1.184)$ & $(1.658)$ & $(1.659)$ &  \\
+  | Zero debt $\times$ Young & $2.860^{*}$ & $3.885^{*}$ & $3.958^{*}$ & --- \\
+  |  & $(1.711)$ & $(2.340)$ & $(2.339)$ &  \\
+  | Age 0--2 & --- & --- & --- & $3.583$ \\
+  |  &  &  &  & $(3.150)$ \\
+  | Age 3--5 & --- & --- & --- & $3.065$ \\
+  |  &  &  &  & $(2.073)$ \\
+  | Age 6--10 & --- & --- & --- & $0.883$ \\
+  |  &  &  &  & $(1.346)$ \\
+  | $\ln$(Assets) & $-0.350$ & $-0.679$ & --- & $-0.691$ \\
+  |  & $(0.273)$ & $(0.453)$ &  & $(0.453)$ \\
+  | Firm age & $0.087^{**}$ & --- & --- & --- \\
+  |  & $(0.043)$ &  &  &  \\
+  | Small (10--49) & $-2.210^{**}$ & $0.636$ & --- & $0.598$ \\
+  |  & $(0.933)$ & $(1.503)$ &  & $(1.503)$ \\
+  | Medium+ (50+) & $-4.876^{***}$ & $1.395$ & --- & $1.341$ \\
+  |  & $(1.576)$ & $(2.979)$ &  & $(2.979)$ \\
+  | \addlinespace
+  | Observations & $14{,}841$ & $13{,}403$ & $13{,}403$ & $13{,}403$ \\
+  | Firms & $5{,}022$ & $3{,}549$ & $3{,}549$ & $3{,}549$ \\
+  | $R^2$ (within for FE) & $0.157$ & $0.036$ & $0.036$ & $0.036$ \\
+  | Firm FE & No & Yes & Yes & Yes \\
+  | Year FE & Yes & Yes & Yes & Yes \\
+  | Sector, province FE & Yes & Absorbed & Absorbed & Absorbed \\
+  | \bottomrule
+  | \end{tabular}
+  | \end{table}
+
+  collateral_channel_table.tex
+  (collateral channel with the asset-percentile premia)
+  --------------------------------------------------------------------------
+  | \begin{table}[H]
+  | \centering
+  | \caption{Credit Exclusion, Collateral Capacity and Used Capital}
+  | \label{tab:collateral}
+  | \begin{tabular}{lcc}
+  | \toprule
+  |  & (1) Between firms & (2) Within firms \\
+  | \midrule
+  | Zero debt & $0.076$ & $-0.482$ \\
+  |  & $(0.655)$ & $(0.836)$ \\
+  | $\ln$(Assets), centred & $0.213$ & $-0.260$ \\
+  |  & $(0.322)$ & $(0.493)$ \\
+  | Zero debt $\times\log(\mathrm{Assets})$ & $-1.216^{***}$ & $-1.067^{**}$ \\
+  |  & $(0.356)$ & $(0.462)$ \\
+  | Small (10--49) & $-2.482^{***}$ & $1.037$ \\
+  |  & $(0.932)$ & $(1.487)$ \\
+  | Medium+ (50+) & $-6.120^{***}$ & $1.153$ \\
+  |  & $(1.576)$ & $(2.994)$ \\
+  | \addlinespace
+  | \multicolumn{3}{l}{\emph{Implied zero-debt premium, by asset percentile}} \\
+  | \quad p10 & $3.18$ & $2.24$ \\
+  | \quad p25 & $1.63$ & $0.88$ \\
+  | \quad p50 & $-0.05$ & $-0.59$ \\
+  | \quad p75 & $-1.51$ & $-1.87^{*}$ \\
+  | \quad p90 & $-2.70$ & $-2.92^{**}$ \\
+  | \addlinespace
+  | Observations & $14{,}935$ & $13{,}492$ \\
+  | Firms & $5{,}029$ & $3{,}551$ \\
+  | $R^{2}$ (within for FE) & $0.158$ & $0.036$ \\
+  | Firm FE & No & Yes \\
+  | Year FE & Yes & Yes \\
+  | Sector, province FE & Yes & Absorbed \\
+  | \bottomrule
+  | \end{tabular}
+  | \end{table}
+
+  firm_fe_results.txt   (this file: the full log above)
+
+DONE.

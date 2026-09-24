@@ -1,0 +1,45 @@
+==============================================================================
+FILE: enterprise 2011.dta   (2512 firms, 738 vars)
+
+  q30a* variables (used-capital question) and their labels:
+    q30aa_11     : 
+    q30ab_11     : 
+    q30ac_11     : 
+
+  EAq1q* variables (asset/size) and their labels:
+    EAq1q09      : 
+    EAq1q10      : 
+
+  chosen: used share = q30ab_11  |  size = log(EAq1q09)
+  used-share distribution: N reporting=2365, share(us>0)=0.312, mean(us|us>0)=0.673
+
+  beta_size regressions (used share on log assets):
+    UNCONDITIONAL : slope=+0.0234 (se 0.0042, N=2359)  <- extensive-margin artifact
+    INTENSIVE     : slope=-0.0108 (se 0.0062, N=783)  <- the MODEL moment
+
+  aggregate (asset-weighted) used share = 0.287  -> implied Kn/Ku = 2.49   (calibration target: 2.5699)
+==============================================================================
+FILE: enterprise 2013.dta   (2542 firms, 830 vars)
+
+  q30a* variables (used-capital question) and their labels:
+    q30aa_13     : 
+    q30ab_13     : 
+    q30ac_13     : 
+
+  EAq1q* variables (asset/size) and their labels:
+    EAq1q11      : 
+    EAq1q12      : 
+
+  chosen: used share = q30ab_13  |  size = log(EAq1q11)
+  used-share distribution: N reporting=2419, share(us>0)=0.349, mean(us|us>0)=0.647
+
+  beta_size regressions (used share on log assets):
+    UNCONDITIONAL : slope=+0.0280 (se 0.0041, N=2415)  <- extensive-margin artifact
+    INTENSIVE     : slope=-0.0269 (se 0.0061, N=886)  <- the MODEL moment
+
+  aggregate (asset-weighted) used share = 0.273  -> implied Kn/Ku = 2.67   (calibration target: 2.5699)
+==============================================================================
+
+==============================================================================
+SIZE GRADIENT OF USED-CAPITAL INTENSITY  (2013 benchmark, panel)
+==============================================================================

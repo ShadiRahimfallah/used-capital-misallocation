@@ -1,0 +1,57 @@
+==============================================================================
+CREDIT ACCESS AND USED CAPITAL  --  Vietnam SME survey, 2011/2013/2015
+==============================================================================
+
+--- 1. STATED REASON FOR NOT APPLYING FOR A FORMAL LOAN ----------------
+  (q87_11, q87_13, q77_15; firms that did not apply since the last round)
+
+  reason                            2011      2013      2015    pooled
+  --------------------------------------------------------------------
+  Inadequate collateral             3.1%      2.7%      2.2%      2.6%
+  Don't want to incur debt         14.6%     17.4%     23.1%     18.5%
+  Process too difficult             8.3%     10.1%      6.8%      8.4%
+  Didn't need one                  57.3%     50.6%     54.5%     54.1%
+  Interest rate too high           14.4%     14.5%      6.9%     11.8%
+  Already heavily indebted          0.9%      1.6%      0.7%      1.0%
+  Other                             1.5%      3.1%      5.9%      3.6%
+  --------------------------------------------------------------------
+  N answering                      1,743     1,882     1,993     5,618
+
+  READING.  Inadequate collateral is 2.6% of stated reasons pooled
+  (147 firms of 5618).  The modal answer is 'didn't need one'.  The draft's
+  sentence -- 'a large share of those that never applied ... lacked
+  collateral' -- is NOT supported and must be rewritten.  What the data
+  do support: most non-applicants are self-financing by choice or price
+  (no need, unwilling to take on debt, rate too high), and a further
+  9.4% are turned away by the process or by existing debt.
+
+--- 2. USED SHARE AMONG APPLICANTS, BY REPORTED DIFFICULTY --------------
+  (q81/q71 'problems getting the loan', asked of applicants only)
+
+  2011, raw difference                            +5.38 pp (se 2.89)*    N=724
+  2013, raw difference                           +11.68 pp (se 3.10)***  N=644
+  2015, raw difference                            +2.15 pp (se 3.55)     N=642
+  2011, + log assets and size class               +4.70 pp (se 2.92)     N=721
+  2013, + log assets and size class              +11.34 pp (se 3.10)***  N=644
+  2015, + log assets and size class               +2.15 pp (se 3.51)     N=642
+  pooled 2011-2015, raw difference                +6.77 pp (se 1.82)***  N=2,010
+  pooled 2011-2015, + log assets and size class   +6.43 pp (se 1.83)***  N=2,007
+
+  Same, on the equipment block's own universe (machinery users with a
+  complete new/used/self triple):
+  2011, raw difference                            +5.38 pp (se 2.89)*    N=724
+  2013, raw difference                           +11.68 pp (se 3.10)***  N=644
+  2015, raw difference                            +2.15 pp (se 3.55)     N=642
+  pooled 2011-2015, raw difference                +6.77 pp (se 1.82)***  N=2,010
+
+  Share of applicants reporting difficulty: 2011 27.2% (N=724), 2013 24.1% (N=644), 2015 15.0% (N=642)
+
+--- 3. THE USED SHARE ON BOTH UNIVERSES --------------------------------
+                                       raw item   in block
+  2011  N                                 2,365      2,364
+       mean used share, pp                 22.3       22.3
+  2013  N                                 2,419      2,401
+       mean used share, pp                 23.7       23.8
+  2015  N                                 2,515      2,515
+       mean used share, pp                 15.7       15.7
+==============================================================================
