@@ -6,6 +6,7 @@ shadirf@yorku.ca
 
 This package contains the code that produces every table and figure in the paper,
 together with the stored model solutions the figure and table scripts read.
+[![DOI](https://zenodo.org/badge/1386341858.svg)](https://doi.org/10.5281/zenodo.22947884)
 
 ## Data
 
